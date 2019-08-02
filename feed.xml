@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en_US"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://samgrayson.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://samgrayson.me/" rel="alternate" type="text/html" hreflang="en_US" /><updated>2019-08-02T02:37:53-05:00</updated><id>https://samgrayson.me/feed.xml</id><title type="html">Interesting thoughts</title><subtitle>Blog about computers, mathematics, and philosophy. Occasionally, other people find my thoughts on these topics interesting.</subtitle><author><name>Samuel Grayson</name></author><entry><title type="html">The Chaos of History (part 2)</title><link href="https://samgrayson.me/2017-01-09-chaos-of-history-2/" rel="alternate" type="text/html" title="The Chaos of History (part 2)" /><published>2017-01-09T00:00:00-06:00</published><updated>2017-01-09T00:00:00-06:00</updated><id>https://samgrayson.me/chaos-of-history-2</id><content type="html" xml:base="https://samgrayson.me/2017-01-09-chaos-of-history-2/">&lt;p&gt;In a
+&lt;a href=&quot;/2016-07-21-chaos-of-history-1/&quot;&gt;previous post&lt;/a&gt;,
+I talked about how a few random events can greatly change history. In this
+post, I will describe that idea more mathematically.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-gedanken&quot;&gt;A Gedanken&lt;/h2&gt;
+
+&lt;p&gt;Let’s say I throw a rock straight up into the air and measure how far away it
+falls 10000 times. &lt;em&gt;I have too much free time.&lt;/em&gt; I can plot that distance against
+the number of falls. You would expect most of them to fall very close to where I
+threw the rock. You would expect far-away falls to be pretty rare.&lt;/p&gt;
+
+&lt;p&gt;We might suggest that this fits a Gaussian distribution (that’s what most people
+associate bell-curve). Most physical phenomena roughly follow a Gaussian
+distribution. Towards the far right, the probability is very small. It should be
+rare that I would toss a rock straight up in the air and see it land 20 meters
+away. The far left and far right are called the ‘tails’ of the distribution.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Gaussian distribution&quot; src=&quot;/assets/img/chaos-of-history-2/gaussian_distribution.png&quot; style=&quot;margins: auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;haphazard-stroll&quot;&gt;Haphazard stroll&lt;/h2&gt;
+
+&lt;p&gt;Now let’s say I throw the rock in the air, but this time I walk to where it
+landed and throw the rock in the air again from that point. This is called a
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Random_walk&quot;&gt;random walk&lt;/a&gt;, and here is what it
+looks like when the rock falls based on a Gaussian distribution. For good
+measure, I will run 5 random walks starting from different spots in different
+colors.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Gaussian random walk&quot; src=&quot;/assets/img/chaos-of-history-2/gaussian_random_walk.png&quot; style=&quot;margins: auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But I want to talk about another distribution: the Cauchy distribution. It is
+very similar to the Gaussian distribution, but it is ever-so-slightly higher at
+the tails (hence it is called a
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Fat-tailed_distribution&quot;&gt;fat-tailed distribution&lt;/a&gt;).
+This means that extreme outcomes are still rare, but slightly less rare. People
+often too quick to assume that a bell-curve shaped distributions are Gaussian,
+as
+&lt;a href=&quot;http://rocketscienceofwallstreet.blogspot.com/2012/04/nassim-nicholas-taleb-against-gaussian.html&quot;&gt;some would argue&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Gaussian and Cauchy distribution&quot; src=&quot;/assets/img/chaos-of-history-2/gaussian_and_cauchy.png&quot; style=&quot;margins: auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But the difference seems small. Let’s see how these distributions differ in a
+real experiment. I’ll take a random walk using the Cauchy distribution and look
+at the differences&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Cauchy random walk&quot; src=&quot;/assets/img/chaos-of-history-2/cauchy_random_walk.png&quot; style=&quot;margins: auto;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the Gaussian random walk, no single rock-throw really moved us far from the
+origin. None of the throw were really ‘out there’. In each Cauchy random walk,
+most of the throws didn’t affect the outcome that much, but there were one or two
+really impactful throws that did most of the moving (especially in the blue and
+green random walk). Outliers are still rare, but when they do occur, they are
+&lt;strong&gt;hugely influential&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-historical-analogy&quot;&gt;The historical analogy&lt;/h2&gt;
+
+&lt;p&gt;I suggest that many historical phenomena act have analogous behavior. One example
+might be, the assassination of Arch Duke Franz Ferdinand; another might be the
+Gulf of Tonkin incident, 9/11, or the battle of Thermopylae.&lt;/p&gt;
+
+&lt;p&gt;There &lt;em&gt;are&lt;/em&gt; historical trends and forces, but they are often realized by single
+explosive events. There was a general trend of anti-imperialism in the early
+twentieth century. Even though most movements of that trend were minor, it only
+took one explosive assassination to change world history irrevocably.&lt;/p&gt;
+
+&lt;h2 id=&quot;looking-to-the-future&quot;&gt;Looking to the future&lt;/h2&gt;
+
+&lt;p&gt;The &lt;em&gt;average value&lt;/em&gt; of a Gaussian or Cauchy distribution is zero (move neither
+to the left or to the right). &lt;em&gt;On average&lt;/em&gt;, when we throw the rock straight up,
+it lands on top of me. The left moves will cancel out the right moves and it
+will end up not far from where starts (the distribution is symmetric). The
+&lt;em&gt;average&lt;/em&gt; may be easy to predict, but &lt;em&gt;reality&lt;/em&gt; might be different.&lt;/p&gt;
+
+&lt;p&gt;In the Gaussian random walk, most of the moves are medium. In the Cauchy most of
+the moves are very small, or very large. A few very extreme moves cause most of
+the movement away from the expected value. As a result, the average predicts
+reality quite poorly. It would have been completely debunked by any one of those
+extreme moves.&lt;/p&gt;
+
+&lt;p&gt;This is why markets are so difficult to predict. There are a few
+unpredictable and extreme events which cause most of the movement
+(called “black swan events”). On average, prices are constant or
+increasing steadily (due to inflation), but then the OPEC declares an
+embargo and the price of oil becomes 300% larger. Or hurricane Katrina
+hits. That is an unlikely and extreme event that screws up the
+models. &lt;a href=&quot;https://dollarvigilante.com/blog/2016/08/09/nassim-taleb-warns-biggest-black-swan-event-coming.html&quot;&gt;Some
+argue&lt;/a&gt;
+that lack of recognition of black swan events played a part in causing
+the housing crisis.&lt;/p&gt;
+
+&lt;p&gt;Should we try harder to predict black swan events with models? There
+will never be enough data-points to do useful analysis of them because
+of their characteristic rarity. The best we can do is remember that
+every model is fallible and engineer the robustness necessary to
+handle that fallibility. These are “unknown unknowns” in &lt;a href=&quot;https://en.wikipedia.org/wiki/There_are_known_knowns&quot;&gt;the parlance
+of Donald Rumsfeld&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Don’t confuse unlikely with impossible.&lt;/p&gt;</content><author><name>Samuel Grayson</name></author><category term="math" /><category term="history" /><summary type="html">In a previous post, I talked about how a few random events can greatly change history. In this post, I will describe that in terms of mathematics and use that to show you why things like stock markets are so difficult to predict.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://samgrayson.me/assets/img/chaos-of-history-2/jackson_pollock.jpg" /></entry><entry><title type="html">Zealots of Tech</title><link href="https://samgrayson.me/2016-08-12-zealots-of-tech/" rel="alternate" type="text/html" title="Zealots of Tech" /><published>2016-08-12T00:00:00-05:00</published><updated>2016-08-12T00:00:00-05:00</updated><id>https://samgrayson.me/zealots-of-tech</id><content type="html" xml:base="https://samgrayson.me/2016-08-12-zealots-of-tech/">&lt;h2 id=&quot;welcome-to-the-cult&quot;&gt;Welcome to the Cult&lt;/h2&gt;
+
+&lt;p&gt;There are few techniques that are globally applicable in software
+development. But we like to act is if that were not the case.&lt;/p&gt;
+
+&lt;p&gt;This is most apparent in programming languages. You have headstrong
+engineers who insist that their programming language is better than
+yours, with &lt;a href=&quot;https://www.reddit.com/r/haskell/comments/3of8zk/the_cult_of_haskell_is_my_favourite_programming/&quot;&gt;cult-like
+devotion&lt;/a&gt;.
+Most of the time, programming languages have different strengths and
+weaknesses, so the ‘best’ programming language depends on the
+problem. It is religious zealotry when they don’t hear out arguments
+against their language of choice. But that insistence is mostly
+unfounded. Look at the sentiment on &lt;a href=&quot;https://www.quora.com/What-are-the-best-programming-languages-to-learn-today&quot;&gt;this quora
+question&lt;/a&gt;
+on the ‘best programming language’ with many comments like “depends on
+what you want to optimize” and “it’s far more important to learn to be
+a good programmer.”&lt;/p&gt;
+
+&lt;p&gt;Managers and investors have a different set of biases about
+programming languages: they insist on using what everyone else is
+using. They know that Java on tomcat is a popular choice for web
+development. They block out other options like Ruby on Rails, which
+might better suit a startup that needs to &lt;a href=&quot;https://www.minddigital.com/ruby-on-rails-for-robust-and-rapid-development/&quot;&gt;go from 0 to
+60&lt;/a&gt;,
+because of their fundamentalist belief that some programming language
+or technique is the &lt;em&gt;only&lt;/em&gt; way. What’s worse is when they prevent an
+innovative solution from being developed because “it’s &lt;a href=&quot;http://paulgraham.com/icad.html&quot;&gt;not industry
+standard&lt;/a&gt;.” &lt;em&gt;Aside: That utterance is
+the sound of a good idea dying an unnecessary death in a company that
+reeks of mediocrity.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;critical-thinking&quot;&gt;Critical Thinking&lt;/h2&gt;
+
+&lt;p&gt;There is some value in using languages you have deep prior knowledge
+of, but there is also value in keeping your mind sharp by learning new
+things. Technology is changing so fast that the tools you feel
+comfortable with may not be relevant anymore. There is also value in
+using a technique that has a large community for support, but that
+argument is often weighed too heavily against other, more direct
+advantages (see &lt;a href=&quot;http://waitbutwhy.com/2015/11/the-cook-and-the-chef-musks-secret-sauce.html&quot;&gt;Tim Urban’s
+post&lt;/a&gt;
+at headline “The Cook and the Chef”).&lt;/p&gt;
+
+&lt;p&gt;Human tendency is to jump on the hype bandwagon and follow the
+crowd. It is the underlying habit of humans to fall into
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Groupthink&quot;&gt;groupthink&lt;/a&gt; caused by
+laziness. It isn’t an overt laziness like shirking duty or skipping
+work, it is a subconscious laziness that avoids critical evaluation of
+one’s own opinions. It isn’t too dissimilar from the echo-chamber of
+our political environment, or a &lt;a href=&quot;https://en.wikipedia.org/wiki/The_Emperor%27s_New_Clothes&quot;&gt;naked
+emperor&lt;/a&gt;
+who claims that only the intelligent are able to see his new clothes.&lt;/p&gt;
+
+&lt;p&gt;The next time you hear “do this because it is more RESTful”, you
+should ask yourself “why are we embracing REST here. Does it make
+sense?” That way you justify your design decisions based on the
+problem itself, not some principle you have forced your solution to
+conform to. Don’t be afraid to question the prevailing wisdom like a
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Social_gadfly&quot;&gt;gadfly&lt;/a&gt;. “Yes, I know
+this diverges from the principles of REST, but our multi-part search
+query isn’t conducive to RESTful URI design since the components are
+not hierarchical.”&lt;/p&gt;
+
+&lt;p&gt;I leave you with the old Unix adage of pragmatism: &lt;em&gt;use the right tool
+for the job&lt;/em&gt;.&lt;/p&gt;</content><author><name>Samuel Grayson</name></author><category term="programming" /><summary type="html">There are few technologies and methodologies that are globally applicable in software development, be it REST, agile methodology, or Python. But we like to act is if that were the case. Instead flexible and pragmatic enough to use the right tool for the job.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://samgrayson.me/assets/img/zealots_of_tech/tools.jpg" /></entry><entry><title type="html">The Chaos of History (part 1)</title><link href="https://samgrayson.me/2016-07-21-chaos-of-history-1/" rel="alternate" type="text/html" title="The Chaos of History (part 1)" /><published>2016-07-21T00:00:00-05:00</published><updated>2016-07-21T00:00:00-05:00</updated><id>https://samgrayson.me/chaos-of-history-1</id><content type="html" xml:base="https://samgrayson.me/2016-07-21-chaos-of-history-1/">&lt;h2 id=&quot;the-man-who-caused-history&quot;&gt;The Man Who Caused History&lt;/h2&gt;
+
+&lt;p&gt;Think of the history of the twentieth century and who is most responsible for
+it. You might be thinking of world leaders like Franklin Delano Roosevelt,
+Joseph Stalin, or Mao Zedong. Or perhaps you are thinking of those who invented
+the technology that changed the world, such as Albert Einstein or Tim
+Berners-Lee.&lt;/p&gt;
+
+&lt;p&gt;But I suggest a man you probably haven’t heard of named Gravilo Princip.&lt;/p&gt;
+
+&lt;p&gt;The day started off poorly for Archduke Franz Ferdinand when three security
+officials were left behind, by mistake. Then an assassin threw a bomb at his
+car! But the bomb bounced off his car and the assassination failed. The
+Archduke’s motorcade sped away to protect him from any other assassination
+attempts.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“The Ides of March have come, and I am still alive!” – Julius Caesar by
+William Shakespeare&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Princip’s realized he lost his chance, so he gave up and went to a
+nearby food shop. But when the motorcade started up again, someone
+forgot to tell the driver to change the route. When this was realized,
+the command was given to reverse, but the transmission was jammed so
+the car stopped &lt;em&gt;right in front of an awe-stricken Pincip&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;By a ridiculous stroke of misfortune (or luck, depending on your point
+of view), between the security officials being left behind, the first
+failed assassination attempt, the driver not knowing the route, the
+transmission being jammed, Gravilo Princip shot and killed Archduke
+Ferdinand&lt;/p&gt;
+
+&lt;h2 id=&quot;princips-butterfly-effect&quot;&gt;Princip’s Butterfly Effect&lt;/h2&gt;
+
+&lt;p&gt;As you might know, this assassination brings up long-standing tensions in
+Europe, setting off World War One.&lt;/p&gt;
+
+&lt;p&gt;As you might know, the treaty which ended World War One involved massive war
+reparations to be paid by the Germans. The German people came to resent of these
+foreign powers spread, making it possible for the Nazis to come to power. Thus
+begins World War Two.&lt;/p&gt;
+
+&lt;p&gt;As you might know, the victors of World War Two partitioned off Europe, and
+while they were doing so, certain tensions among the victors emerged. This led
+to the stand off of the Cold War.&lt;/p&gt;
+
+&lt;p&gt;So Princip brought about a series of events which caused the Cold War. Or
+perhaps the Archduke’s driver should be the one whom we say brought about these
+events. Or perhaps the man who owned the food shop that Princip stopped at, for
+if he were not there perhaps Princip would gone to a different place that wasn’t
+on the motorcade’s route.&lt;/p&gt;
+
+&lt;p&gt;Some would counterargue that the Austro-Hungarian empire was already ripe for
+conflict, and if not Princip, then someone else would set it off. But if it was
+set off in the middle east as a result of Ottoman aggression (there was unrest
+in the region ever since the Young Turk Revolution). Maybe the alignment would
+have been different. Russia would not feel compelled to defend the Slavic
+peoples, and maybe Russia uses this hypothetical war to seek a warm-water port,
+and with the manpower of Russia weighing on the other side of the scale, the
+outcome could be drastically different. The specific details of these events can
+matter a lot&lt;/p&gt;
+
+&lt;h2 id=&quot;false-assumptions&quot;&gt;False Assumptions&lt;/h2&gt;
+
+&lt;p&gt;We like to think that systems like human society have some predictable order. We
+like to think that this order is affected by world leaders and important
+people. We like to think that things happen for compelling reasons. But when a
+world war breaks out on account of the chauffeurs wrong turn, I realize that
+human society is so vastly complex and intricate that some events are just so
+‘out there’ to be foreseen.&lt;/p&gt;
+
+&lt;p&gt;Historical trends and forces are powerful and determine the ‘steady’
+events, like the US economy growing a few percentage points per
+year. However The most interesting events that really make a change,
+like the housing crisis or 9/11, are completely random and unforeseen,
+even by scholars. That course of history wasn’t determined by simple
+rules ore logical reasons. It’s just Lady Fortuna spinning her wheel.&lt;/p&gt;
+
+&lt;h2 id=&quot;further-reading&quot;&gt;Further reading&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/2017-01-09-chaos-of-history-2/&quot;&gt;Part 2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Scientific American: &lt;a href=&quot;http://blogs.scientificamerican.com/the-curious-wavefunction/gavrilo-princip-conspiracy-theories-and-the-fragility-of-cause-and-effect/&quot;&gt;Gavrilo Princip, conspiracy theories and the fragility of cause and effect&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.nytimes.com/2007/04/22/books/chapters/0422-1st-tale.html?_r=0&quot;&gt;Chapter 1&lt;/a&gt; of ‘The Black Swan’ by Nassim Taleb&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Samuel Grayson</name></author><category term="history" /><summary type="html">We like to think that systems like human society have some predictable order, when in reality, history is driven by completely unpredictable random events.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://samgrayson.me/assets/img/chaos-of-history-1/Assassination_of_Archduke_Franz_Ferdinand.jpg" /></entry></feed>
