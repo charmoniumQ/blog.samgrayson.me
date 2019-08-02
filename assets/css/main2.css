@@ -9,7 +9,7 @@
 .by-line {
   margin-bottom: 30px; }
 
-.intro-header h1 a {
+h1 a {
   color: #404040; }
 
 .header-link {
@@ -26,3 +26,9 @@ h4:hover .header-link,
 h5:hover .header-link,
 h6:hover .header-link {
   opacity: 1; }
+
+.intro-header .page-heading h1 {
+  font-size: 60px; }
+
+.excerpt-img {
+  margin: 20px; }
