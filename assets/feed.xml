@@ -7,6 +7,17 @@
     <atom:link href="https://samgrayson.me/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Monads as a Programming Pattern</title>
+        <description>
+          
+          Overview There is a mathematical category-theory definition, but you can use them effectively without understanding that (so don’t @ me, Brendan). This article is written from a programmer’s perspective, where a monad is a software engineering pattern. Like other patterns, you may have already used it without knowing it was...
+        </description>
+        <pubDate>Tue, 06 Aug 2019 00:00:00 -0500</pubDate>
+        <link>https://samgrayson.me/2019-08-06-monads-as-a-programming-pattern/</link>
+        <guid isPermaLink="true">https://samgrayson.me/2019-08-06-monads-as-a-programming-pattern/</guid>
+      </item>
+    
+      <item>
         <title>Creative thinking in math class</title>
         <description>
           
