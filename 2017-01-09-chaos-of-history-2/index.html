@@ -60,7 +60,7 @@
   
 
    
-  <meta property="og:description" content="In a previous post, I talked about how a few random events can greatly change history. In this post, I will describe that idea more mathematically. A Gedanken Let’s say I throw a rock straight up into the air and measure how far away it falls 10000 times. I have...">
+  <meta property="og:description" content="In a previous post, I talked about how a few random events can greatly change history. In this post, I will describe that idea more mathematically. A Thought Experiment Let’s say I throw a rock straight up into the air and measure how far away it falls 10000 times. I...">
   
 
 
@@ -86,7 +86,7 @@
   
 
   
-  <meta name="twitter:description" content="In a previous post, I talked about how a few random events can greatly change history. In this post, I will describe that idea more mathematically. A Gedanken Let’s say I throw a rock straight up into the air and measure how far away it falls 10000 times. I have...">
+  <meta name="twitter:description" content="In a previous post, I talked about how a few random events can greatly change history. In this post, I will describe that idea more mathematically. A Thought Experiment Let’s say I throw a rock straight up into the air and measure how far away it falls 10000 times. I...">
   
 
   
@@ -181,12 +181,12 @@
 
   <div id="header-big-imgs" data-num-img=1
     
-      
-      
-        
-          data-img-src-1="/assets/img/chaos-of-history-2/jackson_pollock.jpg"
-        
-      
+	  
+	  
+	    
+		  data-img-src-1="/assets/img/chaos-of-history-2/jackson_pollock.jpg"
+		
+	  
     
   ></div>
 
@@ -194,7 +194,7 @@
 <header class="header-section has-img">
 
 <a href="https://www.flickr.com/photos/piljun/6301137213">
-  <div class="big-img intro-header ">
+  <div class="big-img intro-header">
     <canvas height="400px" ></canvas>
   </div>
 </a>
@@ -276,7 +276,7 @@
 I talked about how a few random events can greatly change history. In this
 post, I will describe that idea more mathematically.</p>
 
-<h2 id="a-gedanken">A Gedanken</h2>
+<h2 id="a-thought-experiment">A Thought Experiment</h2>
 
 <p>Let’s say I throw a rock straight up into the air and measure how far away it
 falls 10000 times. <em>I have too much free time.</em> I can plot that distance against
@@ -291,7 +291,7 @@ away. The far left and far right are called the ‘tails’ of the distribution.
 
 <p><img alt="Gaussian distribution" src="/assets/img/chaos-of-history-2/gaussian_distribution.png" style="margins: auto;" /></p>
 
-<h2 id="haphazard-stroll">Haphazard stroll</h2>
+<h2 id="haphazard-stroll">Haphazard Stroll</h2>
 
 <p>Now let’s say I throw the rock in the air, but this time I walk to where it
 landed and throw the rock in the air again from that point. This is called a
@@ -326,7 +326,7 @@ really impactful throws that did most of the moving (especially in the blue and
 green random walk). Outliers are still rare, but when they do occur, they are
 <strong>hugely influential</strong>.</p>
 
-<h2 id="the-historical-analogy">The historical analogy</h2>
+<h2 id="the-historical-analogy">The Historical Analogy</h2>
 
 <p>I suggest that many historical phenomena act have analogous behavior. One example
 might be, the assassination of Arch Duke Franz Ferdinand; another might be the
@@ -337,7 +337,7 @@ explosive events. There was a general trend of anti-imperialism in the early
 twentieth century. Even though most movements of that trend were minor, it only
 took one explosive assassination to change world history irrevocably.</p>
 
-<h2 id="looking-to-the-future">Looking to the future</h2>
+<h2 id="looking-to-the-future">Looking to the Future</h2>
 
 <p>The <em>average value</em> of a Gaussian or Cauchy distribution is zero (move neither
 to the left or to the right). <em>On average</em>, when we throw the rock straight up,
@@ -552,12 +552,33 @@ of Donald Rumsfeld</a>.</p>
 </footer>
 
   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
 
 
 
 
 
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/assets/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/assets/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/assets/js/main.js"></script>
+    
+  
 
 
 <script src="/assets/js/anchor_links.js"></script>

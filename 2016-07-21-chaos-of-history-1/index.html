@@ -181,12 +181,12 @@
 
   <div id="header-big-imgs" data-num-img=1
     
-      
-      
-        
-          data-img-src-1="/assets/img/chaos-of-history-1/Assassination_of_Archduke_Franz_Ferdinand.jpg"
-        
-      
+	  
+	  
+	    
+		  data-img-src-1="/assets/img/chaos-of-history-1/Assassination_of_Archduke_Franz_Ferdinand.jpg"
+		
+	  
     
   ></div>
 
@@ -194,7 +194,7 @@
 <header class="header-section has-img">
 
 <a href="https://commons.wikimedia.org/wiki/File:Assassination_of_Archduke_Franz_Ferdinand_1914.jpg">
-  <div class="big-img intro-header ">
+  <div class="big-img intro-header">
     <canvas height="400px" ></canvas>
   </div>
 </a>
@@ -348,7 +348,7 @@ like the housing crisis or 9/11, are completely random and unforeseen,
 even by scholars. That course of history wasn’t determined by simple
 rules ore logical reasons. It’s just Lady Fortuna spinning her wheel.</p>
 
-<h2 id="further-reading">Further reading</h2>
+<h2 id="further-reading">Further Reading</h2>
 
 <ul>
   <li><a href="/2017-01-09-chaos-of-history-2/">Part 2</a></li>
@@ -533,12 +533,33 @@ rules ore logical reasons. It’s just Lady Fortuna spinning her wheel.</p>
 </footer>
 
   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
 
 
 
 
 
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script>
+      	if (typeof jQuery == 'undefined') {
+      	  document.write('<script src="/assets/js/jquery-1.11.2.min.js"></scr' + 'ipt>');
+      	}
+      </script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/assets/js/bootstrap.min.js"></script>
+    
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+	<script src="/assets/js/main.js"></script>
+    
+  
 
 
 <script src="/assets/js/anchor_links.js"></script>
