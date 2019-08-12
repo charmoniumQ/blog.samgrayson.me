@@ -112,7 +112,7 @@
 <meta name="twitter:site" content="@charmoniumQ" />
 <meta name="twitter:creator" content="@charmoniumQ" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Samuel Grayson"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://samgrayson.me/assets/img/logo/drawinghands.jpg"},"name":"Samuel Grayson"},"description":"This article is written from a programmer’s perspective, where a monad is a software engineering pattern. It’s just another tool for your box.","image":"https://samgrayson.me/assets/img/monads-as-a-programming-pattern/toolbox.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://samgrayson.me/2019-08-06-monads-as-a-programming-pattern/"},"@type":"BlogPosting","url":"https://samgrayson.me/2019-08-06-monads-as-a-programming-pattern/","headline":"Monads as a Programming Pattern","dateModified":"2019-08-06T00:00:00-05:00","datePublished":"2019-08-06T00:00:00-05:00","@context":"https://schema.org"}</script>
+{"dateModified":"2019-08-06T00:00:00-05:00","datePublished":"2019-08-06T00:00:00-05:00","description":"This article is written from a programmer’s perspective, where a monad is a software engineering pattern. It’s just another tool for your box.","author":{"@type":"Person","name":"Samuel Grayson"},"image":"https://samgrayson.me/assets/img/monads-as-a-programming-pattern/toolbox.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://samgrayson.me/2019-08-06-monads-as-a-programming-pattern/"},"@type":"BlogPosting","url":"https://samgrayson.me/2019-08-06-monads-as-a-programming-pattern/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://samgrayson.me/assets/img/logo/drawinghands.jpg"},"name":"Samuel Grayson"},"headline":"Monads as a Programming Pattern","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link type="application/atom+xml" rel="alternate" href="https://samgrayson.me/feed.xml" title="Interesting Thoughts" /><link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
@@ -449,7 +449,11 @@
 
 <p>It is a weird transformation, but you can see its utility: we can—to some extent—forget that <code class="highlighter-rouge">getLine</code> returns wrapped values; <code class="highlighter-rouge">x</code> is just a regular <code class="highlighter-rouge">int</code>. This makes writing monadic code as natural as operating on regular values.</p>
 
+<h3 id="state">State</h3>
+
 <p>Note that <code class="highlighter-rouge">getInput</code> is a pure function: it takes a function of type <code class="highlighter-rouge">Int -&gt; Void</code> and calls it with an argument and returns <code class="highlighter-rouge">void</code>. Although the returned value is always the same (<code class="highlighter-rouge">void</code>), the argument it passes could be different in subsequent calls. This is how we can model what would otherwise be a non-deterministic function in a pure-functional way. Pure functional programming languages represent <a href="https://en.wikibooks.org/wiki/Haskell/Understanding_monads/IO#The_universe_as_part_of_our_program">the whole outside world</a> as a monadic context. Programs just bind computation onto this context.</p>
+
+<h3 id="control-flow">Control-flow</h3>
 
 <p>Monads are often called <a href="http://www.thisurlisfalse.com/programmable-semicolon-monads-in-haskell/">programmable semicolons</a>, because the monad’s <code class="highlighter-rouge">bind</code> controls the subsequent computation.</p>
 
@@ -743,7 +747,7 @@ I acknowledge that this article probably won’t help most people because I migh
         </ul>
 
         <p class="copyright text-muted">
-             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. External images may be subject to additional restrictions. Click an image for its attribution. Source code is available <a href="https://github.com/charmoniumQ/blog-content">on GitHub</a>. Share with love <i class="fa fa-heart" aria-hidden="true"></i>
+             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="/assets/img/footer/CC-BY.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. External images may be subject to additional restrictions. Click an image for its attribution. Source code is available <a href="https://github.com/charmoniumQ/blog-content">on GitHub</a>. Share with love <i class="fa fa-heart" aria-hidden="true"></i>
          </p>
                 
 		<p class="theme-by text-muted">
