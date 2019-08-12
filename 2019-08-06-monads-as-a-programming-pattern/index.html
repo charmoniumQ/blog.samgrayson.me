@@ -60,7 +60,7 @@
   
 
    
-  <meta property="og:description" content="Overview There is a mathematical category-theory definition, but you can use them effectively without understanding that (so don’t @ me, Brendan). This article is written from a programmer’s perspective, where a monad is a software engineering pattern. Like other patterns, you may have already used it without knowing it was...">
+  <meta property="og:description" content="Overview This article is written from a programmer’s perspective, where a monad is a software engineering pattern. Like other patterns, you may have already used it without knowing it was the monad pattern. There is still value in studying such patterns, because then you can use it more fluidly. There...">
   
 
 
@@ -86,7 +86,7 @@
   
 
   
-  <meta name="twitter:description" content="Overview There is a mathematical category-theory definition, but you can use them effectively without understanding that (so don’t @ me, Brendan). This article is written from a programmer’s perspective, where a monad is a software engineering pattern. Like other patterns, you may have already used it without knowing it was...">
+  <meta name="twitter:description" content="Overview This article is written from a programmer’s perspective, where a monad is a software engineering pattern. Like other patterns, you may have already used it without knowing it was the monad pattern. There is still value in studying such patterns, because then you can use it more fluidly. There...">
   
 
   
@@ -271,15 +271,15 @@
       <article role="main" class="blog-post">
         <h2 id="overview">Overview</h2>
 
-<p>There is a mathematical <a href="https://ncatlab.org/nlab/show/monad">category-theory definition</a>, but you can use them effectively without understanding that (so don’t @ me, Brendan). This article is written from a programmer’s perspective, where a monad is a <a href="https://en.wikipedia.org/wiki/Software_design_pattern"><em>software engineering pattern</em></a>. Like other patterns, you may have already used it without knowing it was the monad pattern. There is still  value in studying such patterns, because then you can use it more fluidly.</p>
+<p>This article is written from a programmer’s perspective, where a monad is a <a href="https://en.wikipedia.org/wiki/Software_design_pattern"><em>software engineering pattern</em></a>. Like other patterns, you may have already used it without knowing it was the monad pattern. There is still  value in studying such patterns, because then you can use it more fluidly. There is a mathematical <a href="https://ncatlab.org/nlab/show/monad">category-theory definition</a>, but you can use them effectively without understanding that (so don’t @ me, Brendan).</p>
 
-<p><strong>Imprecise definition:</strong> A monad is a type that wraps an object of another type. There is no direct way to get that ‘inside’ object. Instead you ask the monad to act on it for you. It is a lot like the <a href="https://en.wikipedia.org/wiki/Visitor_pattern">visitor pattern</a>, but it is capable of returning something wrapped in another monad. This essential property makes functions on monads composable. I’ll get to a precise definition after you understand the imprecise one through some examples.</p>
+<p><strong>Imprecise definition:</strong> A monad is a type that wraps an object of another type. There is no direct way to get that ‘inside’ object. Instead you ask the monad to act on it for you. Monadic classes are a lot like classes implementing the <a href="https://en.wikipedia.org/wiki/Visitor_pattern">visitor pattern</a>, but monads are capable of returning something wrapped in another monad. This essential property makes functions on monads composable. I’ll get to a precise definition after you understand the imprecise one through some examples.</p>
 
 <h2 id="examples">Examples</h2>
 
 <h3 id="maybenullableoptional-monad">Maybe/Nullable/Optional monad</h3>
 
-<p>Our fist example is Maybe. I will write its interface in a Java-like language.</p>
+<p>Our first example is Maybe. I will write its interface in pseudocode resembling Java.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Maybe</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="kd">static</span> <span class="nc">Maybe</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nc">Nothing</span><span class="o">;</span>
@@ -288,7 +288,7 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>As promised, the Maybe monad can contain another object, and we can ask it to act indirectly. Notice that apply doesn’t take a function from <code class="highlighter-rouge">T -&gt; V</code>, but rather from <code class="highlighter-rouge">T -&gt; Maybe&lt;V&gt;</code>. It unboxes the inside object, does the function and returns the new box. This allows monads to be chained together.</p>
+<p>As promised, the Maybe monad can contain another object, and we can ask it to act indirectly. Notice that apply doesn’t take a function from <code class="highlighter-rouge">T -&gt; V</code>, but rather from <code class="highlighter-rouge">T -&gt; Maybe&lt;V&gt;</code>. It unboxes the inside object, executes the function and returns the new box. This allows monads to be chained together.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Let's assume getInput asks the user for input,</span>
 <span class="c1">// and returns Some(value) if the user enters a valid value.</span>
@@ -305,29 +305,29 @@
 <span class="o">});</span>
 </code></pre></div></div>
 
-<p>If <code class="highlighter-rouge">apply</code> took <code class="highlighter-rouge">T -&gt; V</code>, this would evaluate to a <code class="highlighter-rouge">Maybe&lt;Maybe&lt;int&gt;&gt;</code>, which is less wieldy. Also note that a function<code class="highlighter-rouge">T -&gt; V</code> can still be used; just compose it with <code class="highlighter-rouge">Some</code>:</p>
+<p>If <code class="highlighter-rouge">apply</code> took <code class="highlighter-rouge">T -&gt; V</code>, this would evaluate to a <code class="highlighter-rouge">Maybe&lt;Maybe&lt;int&gt;&gt;</code>, which quickly becomes unwieldy. Also note that a function <code class="highlighter-rouge">T -&gt; V</code> can still be used; just compose it with <code class="highlighter-rouge">Some</code>:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// let func: T -&gt; V</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">wrapped</span><span class="o">.</span><span class="na">apply</span><span class="o">((</span><span class="no">T</span> <span class="n">a</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="nc">Some</span><span class="o">(</span><span class="n">func</span><span class="o">(</span><span class="n">a</span><span class="o">)));</span>
-<span class="c1">// result is Monad&lt;V&gt;, as desired</span>
+<span class="c1">// result is Maybe&lt;V&gt;, as desired</span>
 </code></pre></div></div>
 
 <h3 id="listcollection-monad">List/Collection monad</h3>
 
-<p>In the previous example, you might think a monad is an interface for <a href="https://en.wikipedia.org/wiki/Object_composition#Aggregation">aggregating (in the OOP sense)</a> another object, but here is a monad that is more general than that.</p>
+<p>In the previous example, you might think a monad is just an interface for <a href="https://en.wikipedia.org/wiki/Object_composition#Aggregation">aggregating (in the OOP sense)</a> another object, but here is a monad that is more general than that.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Collection</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="c1">// makes collection containing one element</span>
     <span class="kd">static</span> <span class="nc">Collection</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">makeCollection</span><span class="o">(</span><span class="no">T</span> <span class="n">initialElement</span><span class="o">);</span>
 
-    <span class="c1">// runs func on every element and combines the results</span>
+    <span class="c1">// runs func on every element and concatenates the results</span>
     <span class="nc">Collection</span><span class="o">&lt;</span><span class="no">V</span><span class="o">&gt;</span> <span class="nf">flatMap</span><span class="o">(</span><span class="nc">Function</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="nc">Collection</span><span class="o">&lt;</span><span class="no">V</span><span class="o">&gt;&gt;</span> <span class="n">func</span><span class="o">);</span>
 
 
     <span class="c1">// runs func on every element</span>
-    <span class="nc">Collection</span><span class="o">&lt;</span><span class="no">V</span><span class="o">&gt;</span> <span class="nf">map</span><span class="o">(</span><span class="nc">Fucntion</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">V</span><span class="o">&gt;</span> <span class="n">func</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Collection</span><span class="o">&lt;</span><span class="no">V</span><span class="o">&gt;</span> <span class="nf">map</span><span class="o">(</span><span class="nc">Function</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">V</span><span class="o">&gt;</span> <span class="n">func</span><span class="o">)</span> <span class="o">{</span>
         <span class="c1">// implemented by calling flatMap</span>
-        <span class="n">flatMap</span><span class="o">((</span><span class="no">T</span> <span class="n">element</span><span class="o">)</span>  <span class="o">-&gt;</span> <span class="n">makeCollection</span><span class="o">(</span><span class="n">func</span><span class="o">(</span><span class="n">element</span><span class="o">)));</span>
+        <span class="n">flatMap</span><span class="o">((</span><span class="no">T</span> <span class="n">element</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">makeCollection</span><span class="o">(</span><span class="n">func</span><span class="o">(</span><span class="n">element</span><span class="o">)));</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
@@ -336,7 +336,7 @@
 
 <h3 id="promiseawaitable-monad">Promise/Awaitable monad</h3>
 
-<p>In the previous two examples, you may have wanted a method that exposes the wrapped value(s), maybe <code class="highlighter-rouge">getValues</code>. The whole point of the monad pattern is that you don’t give in to that urge. It’s like <a href="https://en.wikipedia.org/wiki/Information_hiding">data-hiding (in the OOP sense)</a>. Instead of accessing elements directly, you chain on your computations through <code class="highlighter-rouge">apply</code>/<code class="highlighter-rouge">flatMap</code>/<code class="highlighter-rouge">then</code>. The Promise monad is an example where you physically can’t ask for the wrapped values, because it might not exist yet! <a href="https://stackoverflow.com/q/45378267/1078199">A common beginner question</a> is how to get the value <em>out</em> of the promise for subsequent computation, but the answer is instead to put the subsequent computation <em>into</em> the promise, using <code class="highlighter-rouge">.then</code>.</p>
+<p>In the previous two examples, you may have wanted a method that exposes the wrapped value(s), maybe <code class="highlighter-rouge">getValues</code>. The whole point of the monad pattern is to avoid that urge, and . It’s like <a href="https://en.wikipedia.org/wiki/Information_hiding">data-hiding (in the OOP sense)</a>. Instead of accessing elements directly, you chain on your computations through <code class="highlighter-rouge">apply</code>/<code class="highlighter-rouge">flatMap</code>/<code class="highlighter-rouge">then</code>. The Promise monad is an example where you physically can’t ask for the wrapped values, because it might not exist yet! <a href="https://stackoverflow.com/q/45378267/1078199">A common question</a> is how to get the value <em>out</em> of the promise for subsequent computation, but the answer is instead to put the subsequent computation <em>into</em> the promise, using <code class="highlighter-rouge">.then</code>.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Promise</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="kd">static</span> <span class="nc">Promise</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">makePromise</span><span class="o">(</span><span class="no">T</span> <span class="n">value</span><span class="o">);</span>
@@ -515,8 +515,8 @@
 
 <ol>
   <li>Sometimes the monad acts like a container of another type, as in the Collection monad. This is why some people emphatically exclaim eureka’s like “a monad is just like <a href="https://blog.plover.com/prog/burritos.html">a burrito</a>”, “<a href="http://telofy.soup.io/post/23797479/Think-of-a-monad-as-a-spacesuit">a spacesuit</a>”, or “<a href="https://www.reddit.com/r/haskell/comments/1bymg1/monads_are_burritos_in_spacesuits_full_of_nuclear/">a burrito in a spacesuit</a>.” These people miss that it can be anything else; in many use-cases the monad can’t simply ‘contain’ it. While the authors might understand this, a novice reader likely won’t.</li>
-  <li>In these non-containing use-cases, the monad could be acting like a potential for there being a value, kind of like a Promise. Often monads in this case have the same semantics as “<a href="https://en.wikipedia.org/wiki/Continuation-passing_style">continuations</a>” or callbacks: I don’t have the value, but I can have the guy who does call (haha) you.</li>
-  <li>Sometimes it acts like the context for data. This last case is used in functional programming languages to isolate impure side-effects of functions. <code class="highlighter-rouge">getLine</code> in Haskell returns a <code class="highlighter-rouge">string</code> in an <a href="https://en.wikibooks.org/wiki/Haskell/Understanding_monads/IO"><code class="highlighter-rouge">IO</code></a> monad. Perhaps you would have a Thread monad, that represents thread-local data (the thread is context for the data). You can’t operate on the data because it is not in your thread, but you can ask the other thread to operate on it for you. I chose not to elaborate examples of this use-case because it is less applicable outside of ML-family languages.</li>
+  <li>In these non-containing use-cases, the monad can act like a potential for there being a value, kind of like a Promise. Often monads in this case have the same semantics as “<a href="https://en.wikipedia.org/wiki/Continuation-passing_style">continuations</a>” or callbacks: I don’t have the value, but I can have the guy who does call (haha) you.</li>
+  <li>Sometimes a monad can act like the context for data. This last case is used in functional programming languages to isolate impure side-effects of functions. <code class="highlighter-rouge">getLine</code> in Haskell returns a <code class="highlighter-rouge">string</code> in an <a href="https://en.wikibooks.org/wiki/Haskell/Understanding_monads/IO"><code class="highlighter-rouge">IO</code></a> monad. Perhaps you would have a Thread monad, that represents thread-local data (the thread is context for the data). You can’t operate on the data because it is not in your thread, but you can ask the other thread to operate on it for you. I chose not to elaborate examples of this use-case because it is less applicable outside of ML-family languages.</li>
 </ol>
 
 <p>Now you know the pattern. It is useful to recognize in the wild, and it is a good tool in the box.</p>
@@ -545,13 +545,14 @@
 </ol>
 
 <p>The first point was a pragmatic choice to emphasize the utility of a monad, and the latter two are ways of connecting it to things the reader probably already understands.
-I acknowledge that this article probably won’t help most people because I might not be good at explaining how I learned this thing, and there is a large possibility I don’t have the same learning style as you. I do hope the act of reading it inspires an original thought in at least a few readers or even one; That will make it worthwhile.</p>
+I acknowledge that this article probably won’t help most people because I might not be good at explaining how I learned this thing, and there is a large possibility that I don’t have the same learning style as you. However, I do hope the act of reading it inspires an original thought in at least a few readers or even one; That will make all this worthwhile.</p>
+
 <h2 id="further-reading">Further reading</h2>
 <ul>
   <li><a href="http://blog.sigfpe.com/2006/08/you-could-have-invented-monads-and.html">You Could Have Invented Monads! (And Maybe You Already Have.)</a> This is the best tutorial I have read through for its brevity and the challenges it gives the reader.</li>
   <li><a href="https://wiki.haskell.org/Monad_tutorials_timeline">Monad tutorials timeline</a> This is a somewhat opinionated list of many blogposts like this one. Given the variety of pedagogical choices, there is likely one that is suited to your learning style.</li>
   <li><a href="https://en.wikibooks.org/wiki/Haskell/Category_theory">Wikibooks Haskell/Category Theory</a> This is more technical, delving into the actual category theory. <a href="https://en.wikibooks.org/wiki/Haskell/Applicative_functors#A_sliding_scale_of_power">A different chapter</a> draws a progression from functors to applicatives to monads. The series is great if you want a deeper dive.</li>
-  <li><a href="https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/">Category Theory for Programmers</a> Although I’ve only read bits and pieces, this seems like the most complete way to learn this while keeping ones sanity (as opposed to reading a math book on category theory).</li>
+  <li><a href="https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/">Category Theory for Programmers</a> I’ve only the first half, but this seems like the most complete way to learn this while keeping ones sanity (as opposed to reading a math book on category theory).</li>
 </ul>
 
       </article>
