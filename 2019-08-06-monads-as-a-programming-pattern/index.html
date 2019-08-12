@@ -355,14 +355,14 @@
 
 <p>Streams naturally arise as well; They are just promises that get <code class="highlighter-rouge">resolve</code>d multiple times.</p>
 
-<h2 id="precise-definition">Precise Definition</h2>
+<h2 id="precise-definition">Precise definition</h2>
 
 <p>Borrowing heavily from <a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)#Definition">Wikipedia</a>, a monad is three things…</p>
 
 <ul>
   <li>A generic type <code class="highlighter-rouge">M</code> .</li>
-  <li>A function, often called <code class="highlighter-rouge">wrap</code> or <code class="highlighter-rouge">return</code> (Haskell), with signature is <code class="highlighter-rouge">T -&gt; M&lt;T&gt;</code>. In my examples this is, <code class="highlighter-rouge">Nullable.Some</code> , <code class="highlighter-rouge">Collection.makeCollection</code>, and <code class="highlighter-rouge">Promise.makePromise</code>. This convertor takes a regular value and wraps it in a monadic one.</li>
-  <li>A combinator, often called <code class="highlighter-rouge">bind</code> or spelled as an infix operator, <code class="highlighter-rouge">&gt;&gt;=</code> (Haskell), with signature <code class="highlighter-rouge">(M&lt;T&gt;, T -&gt; M&lt;V&gt;) -&gt; M&lt;V&gt;</code>. In my examples this is, <code class="highlighter-rouge">Nullable.apply</code> , <code class="highlighter-rouge">Collection.flatMap</code>, and <code class="highlighter-rouge">Promise.then</code>. This combinator unwraps the monad, does an operation, and returns the monad of the result.</li>
+  <li>A function, often called <code class="highlighter-rouge">wrap</code>, <code class="highlighter-rouge">of</code> (<a href="https://github.com/fantasyland/fantasy-land">JS fantasy-land</a>), or <code class="highlighter-rouge">return</code> (<a href="https://downloads.haskell.org/~ghc/latest/docs/html/libraries/base-4.12.0.0/Control-Monad.html#v:return">Haskell</a>), with signature is <code class="highlighter-rouge">T -&gt; M&lt;T&gt;</code>. In my examples this is, <code class="highlighter-rouge">Nullable.Some</code> , <code class="highlighter-rouge">Collection.makeCollection</code>, and <code class="highlighter-rouge">Promise.makePromise</code>. This convertor takes a regular value and wraps it in a monadic one.</li>
+  <li>A combinator, often called <code class="highlighter-rouge">bind</code>, <code class="highlighter-rouge">chain</code> (<a href="https://github.com/fantasyland/fantasy-land">JS fantasy-land</a>) or spelled as an infix operator, <code class="highlighter-rouge">&gt;&gt;=</code> (<a href="https://downloads.haskell.org/~ghc/latest/docs/html/libraries/base-4.12.0.0/Control-Monad.html#v:-62--62--61-">Haskell</a>), with signature <code class="highlighter-rouge">(M&lt;T&gt;, T -&gt; M&lt;V&gt;) -&gt; M&lt;V&gt;</code>. In my examples this is, <code class="highlighter-rouge">Nullable.apply</code> , <code class="highlighter-rouge">Collection.flatMap</code>, and <code class="highlighter-rouge">Promise.then</code>. This combinator unwraps the monad, does an operation, and returns the monad of the result.</li>
 </ul>
 
 <p>… that respects these three laws…</p>
@@ -390,11 +390,20 @@
 <img src="/assets/img/monads-as-a-programming-pattern/pyramid_of_doom.jpg" alt="pyramid of doom" />
 </a></p>
 
+<p>These laws let me write functions that will work with <em>any</em> monad. For example, I mentioned implementing <code class="highlighter-rouge">map</code> on some specific monads. Now I’ll implement it for all monads that follow the monad-laws.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// I'll assume that all monads in this language implement the interface Monad&lt;T&gt;</span>
+
+<span class="nc">Monad</span><span class="o">&lt;</span><span class="no">V</span><span class="o">&gt;</span> <span class="nf">map</span><span class="o">(</span><span class="nc">Monad</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">input</span><span class="o">,</span> <span class="nc">Function</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">V</span><span class="o">&gt;</span> <span class="n">func</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">input</span><span class="o">.</span><span class="na">bind</span><span class="o">((</span><span class="no">T</span> <span class="n">elem</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="nc">Monad</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="n">func</span><span class="o">(</span><span class="n">elem</span><span class="o">)));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
 <h3 id="category-theory">Category Theory</h3>
 
 <p>The concept of monads comes from <a href="https://en.wikipedia.org/wiki/Monad_(category_theory)">category theory</a>. Their use in computer programming was first explicated rather recently, in 1989 (<a href="https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.26.2787">CiteSeerX 10.1.1.26.2787</a>). The monad has friends which are also borrowed into programming: monoids, functors, and applicatives. Although the math is important and valuable I think the monad pattern can be used effectively without knowledge of category theory, just as a programmer can effectively use the <code class="highlighter-rouge">lambda</code>-functions without understanding <a href="https://en.wikipedia.org/wiki/Lambda_calculus"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>-calculus</a>. The concept from category theory is just inspiration. The laws I stated above are enough for program-correctness.</p>
 
-<p>If a construct does not satisfy the monad laws, it technically isn’t a monad, but it might still be monad-inspired. Most JavaScript promise libraries do not quite satisfy the definition of Monad for technical reasons better explained <a href="https://stackoverflow.com/a/45772042/1078199">on StackOverflow</a> <a href="https://stackoverflow.com/a/50173415/1078199">in multiple answers</a>, although <a href="[https://github.com/briancavalier/creed](https://github.com/briancavalier/creed)">some</a> do. Even Haskell’s so-called <code class="highlighter-rouge">IO Monad</code> <a href="https://www.quora.com/How-would-you-explain-a-concept-of-monads-to-a-non-CS-person">may not even be a proper category-theory monad</a>.</p>
+<p>If a construct does not satisfy the monad laws, it technically isn’t a monad, but it might still be monad-inspired. In most JS libraries, <code class="highlighter-rouge">.then</code> can take <code class="highlighter-rouge">A -&gt; Monad&lt;B&gt;</code> AND <code class="highlighter-rouge">A -&gt; B</code> (not monad-compliant). This design choice breaks associativity for objects with a property named <code class="highlighter-rouge">then</code> (<a href="https://stackoverflow.com/a/45772042/1078199">1</a>, <a href="https://stackoverflow.com/a/50173415/1078199">2</a>). This is not necessarily wrong or bad. I personally find it a pragmatic decision that often simplifies code, even though it is less theoretically nice. <a href="[https://github.com/briancavalier/creed](https://github.com/briancavalier/creed)">Some JS libraries</a> do fit the mathematical monad bill. Even Haskell’s so-called <code class="highlighter-rouge">IO Monad</code> <a href="https://www.quora.com/How-would-you-explain-a-concept-of-monads-to-a-non-CS-person">may not even be a proper category-theory monad</a>.</p>
 
 <h2 id="syntax">Syntax</h2>
 
@@ -431,14 +440,29 @@
 <p>And this is the semantically equivalent using do-notation:</p>
 
 <div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">do</span> <span class="p">{</span>
-    <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">getInput</span>    <span class="c1">-- Everything after here goes after: getInput &gt;&gt;= \x -&gt; ...</span>
-    <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">getInput</span>    <span class="c1">-- Everything after here goes after: getInput &gt;&gt;= \y -&gt; ...</span>
+    <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">getInput</span><span class="p">;</span>   <span class="c1">-- Everything after here goes after: getInput &gt;&gt;= \x -&gt; ...</span>
+    <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">getInput</span><span class="p">;</span>   <span class="c1">-- Everything after here goes after: getInput &gt;&gt;= \y -&gt; ...</span>
     <span class="n">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
-    <span class="c1">-- since this are semantically equivalent, x and y are just regular ints</span>
+    <span class="c1">-- x and y are just regular ints, not wrapped ints.</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>It is a weird transformation, but you can see its utility: we can—to some extent—forget that <code class="highlighter-rouge">getLine</code> returns wrapped values; <code class="highlighter-rouge">x</code> is just a regular <code class="highlighter-rouge">int</code>. This makes writing monadic code as natural as operating on regular values.</p>
+
+<p>Note that <code class="highlighter-rouge">getInput</code> is a pure function: it takes a function of type <code class="highlighter-rouge">Int -&gt; Void</code> and calls it with an argument and returns <code class="highlighter-rouge">void</code>. Although the returned value is always the same (<code class="highlighter-rouge">void</code>), the argument it passes could be different in subsequent calls. This is how we can model what would otherwise be a non-deterministic function in a pure-functional way. Pure functional programming languages represent <a href="https://en.wikibooks.org/wiki/Haskell/Understanding_monads/IO#The_universe_as_part_of_our_program">the whole outside world</a> as a monadic context. Programs just bind computation onto this context.</p>
+
+<p>Monads are often called <a href="http://www.thisurlisfalse.com/programmable-semicolon-monads-in-haskell/">programmable semicolons</a>, because the monad’s <code class="highlighter-rouge">bind</code> controls the subsequent computation.</p>
+
+<div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">squares</span> <span class="o">=</span> <span class="kr">do</span> <span class="p">{</span>
+    <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">list</span><span class="p">;</span>
+    <span class="c1">-- the List monad controls the code at this point</span>
+	<span class="c1">-- in fact, it runs once for each element in the list.</span>
+    <span class="n">return</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This allows for complex control-flow operations (such as coroutines) to be implemented at the user-level in a monad instead of the language-level. Languages without do-notation have to bend over backwards to emulate it in specific cases, as we will see.</p>
 
 <h3 id="cpythonjavascript-await-keyword">C#/Python/JavaScript await keyword</h3>
 
@@ -521,7 +545,7 @@
 
 <p>Now you know the pattern. It is useful to recognize in the wild, and it is a good tool in the box.</p>
 
-<h3 id="my-poor-pedagogy">My poor pedagogy</h3>
+<h3 id="maybe-this-explanation-is-bad">Maybe this explanation is bad</h3>
 
 <p>It seems everyone who learns about monads goes through <a href="https://stackoverflow.com/a/19551168/1078199">this cycle</a>:</p>
 
@@ -609,7 +633,7 @@ I acknowledge that this article probably won’t help most people because I migh
       <ul class="pager blog-pager">
         
         <li class="previous">
-          <a href="/2017-05-20-creative-thinking-in-math-class/" data-toggle="tooltip" data-placement="top" title="Creative thinking in math class">&larr; Previous Post</a>
+          <a href="/2017-05-20-creative-thinking-in-math-class/" data-toggle="tooltip" data-placement="top" title="Creative Thinking in Math Class">&larr; Previous Post</a>
         </li>
         
         
@@ -719,7 +743,7 @@ I acknowledge that this article probably won’t help most people because I migh
         </ul>
 
         <p class="copyright text-muted">
-             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. External images may be subject to additional restrictions. Click an image for its attribution. Share with love <i class="fa fa-heart" aria-hidden="true"></i>
+             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. External images may be subject to additional restrictions. Click an image for its attribution. Source code is available <a href="https://github.com/charmoniumQ/blog-content">on GitHub</a>. Share with love <i class="fa fa-heart" aria-hidden="true"></i>
          </p>
                 
 		<p class="theme-by text-muted">
